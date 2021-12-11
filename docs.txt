@@ -1,0 +1,49 @@
+/geocode/forward
+
+Params:
+    Required:
+        lat: latitude (num),
+        lng: longitude (num)
+
+Returns a JSON response with properties: address, location, place ID.
+
+Example:
+    To get the coordinates of the postal address: 2795 Hastings St, Vancouver, BC V5K 1Z8
+
+    Request:
+        /geocode/forward?address=2795%20Hastings%20St%2CVancouver%2CBC%2CV5K1Z8
+    
+    Response:
+        {
+            "address": "2795 E Hastings St, Vancouver, BC V5K 1Z8, Canada",
+            "location": {
+                "lat":49.2813458,
+                "lng":-123.0470199
+            },
+            "place_id": "ChIJr9qJ9yBxhlQRVydHPfGaK6U"
+        }
+
+
+/geocode/reverse
+
+Params:
+    Required:
+        address: (string)
+
+Returns a JSON response with properties: address, location, place ID.
+
+Example:
+    To get the address of the lat,lng coordinates: 49.2813458, -123.0470199
+
+    Request:
+        /geocode/reverse?lat=49.2813458&lng=-123.0470199
+    
+    Response:
+        {
+            "address": "2795 E Hastings St, Vancouver, BC V5K 1Z8, Canada",
+            "location": {
+                "lat":49.2813458,
+                "lng":-123.0470199
+            },
+            "place_id": "ChIJr9qJ9yBxhlQRVydHPfGaK6U"
+        }
