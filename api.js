@@ -5,8 +5,7 @@ import getGoogleErrorMessage from './error.js';
 
 const app = express();
 
-const FORWARD_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
-const REVERSE_GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
+const GEOCODE_URL = 'https://maps.googleapis.com/maps/api/geocode/json?';
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 
@@ -16,7 +15,7 @@ app.get('/geocode/reverse', (req, res) => {
         res.status(400).json({ message: 'Missing required params: lat, lng' });
     }
 
-    axios.get(REVERSE_GEOCODE_URL, {
+    axios.get(GEOCODE_URL, {
         params: {
             latlng: req.query.lat.concat(',', req.query.lng),
             result_type: 'street_address',
@@ -52,7 +51,7 @@ app.get('/geocode/forward', (req, res) => {
         res.status(400).json({ message: 'Missing required params: address' });
     }
 
-    axios.get(FORWARD_GEOCODE_URL, {
+    axios.get(GEOCODE_URL, {
         params: {
             address: req.query.address,
             key: GOOGLE_API_KEY
@@ -82,5 +81,5 @@ app.get('/geocode/forward', (req, res) => {
 
 
 app.listen(process.env.PORT || 5000, () => {
-    console.log("Server started at http://localhost:5000");
+    console.log("Server started.");
 });
